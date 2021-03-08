@@ -55,9 +55,10 @@ Just call the MHSI with your URL: https://youronlineshopurl.com/mhsi
 Please notice, that we **strongly recommend to protect this folder by htpasswd / htaccess protection**. 
 
 ### Documentation
-At the moment a more enhanced German version of the package documentation can be found here: 
+At the moment a more enhanced **German** version of the documentation can be found here: 
 https://support.web-vision.de/produkte-und-software/magento-high-speed-import-3-1
-We are busy translating this documentation to English at the moment. For now, we recommend using https://deepl.com for translating
+The **English** documentation can be found here:
+https://support.web-vision.de/en/magento-high-speed-import-3-1-english-documentation
 
 ## Warranty
 This script comes without any warranty. Please use it at your own risk and make sure to take backups and test the script in a staging / development environment before you run it on a production system.
