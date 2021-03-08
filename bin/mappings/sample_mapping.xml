@@ -1,0 +1,13 @@
+<mappings>
+    <!-- Leerzeichen in den Spaltennamen durch Unterstriche '_' ersetzen -->
+    <Spaltenname_mit_Leerzeichen>magento_attribute_code</Spaltenname_mit_Leerzeichen>
+    <Artikel-Nummer>sku</Artikel-Nummer>
+    <Produktname>name</Produktname>
+    <Preis>price</Preis>
+    <Sonder_Preis>special_price</Sonder_Preis>
+    <Kurz_Beschreibung>short_description</Kurz_Beschreibung>
+    <Beschreibung>description</Beschreibung>
+    <Sichtbarkeit>visibility</Sichtbarkeit>
+    <Steuer>tax_class_id</Steuer>
+    <Lagerbestand>qty</Lagerbestand>
+</mappings>
