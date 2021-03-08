@@ -7,10 +7,10 @@ The automatic assignment of categories, image imports or even a logical import o
 
 With the Magento Import Extension developed by web-vision, you can now reliably and securely import thousands of products into your Magento store within a few minutes - for Magento 1 and Magento 2.
 
-h2. Performance
+## Performance
 Import 16,000 products into a running Magento store in live mode within 8 minutes.
 
-h2. What can the MHSI do for you?
+## What can the MHSI do for you?
 -  Graphical user interface for creating, managing import profiles and for manual execution.
 -  XML to CSV conversion.
 -  Import of configurable and simple products in Magento 1 or 2.
