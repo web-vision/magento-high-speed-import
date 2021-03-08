@@ -51,7 +51,7 @@ Example: Main category#Subcategory1:100,Main category#Subcategory2:20
 The mapping of product attributes and setting of Magento default values can be done with Configuration.xml files which are located in bin/ folder. Please find a first example here: bin/default.xml.dist. Import files shall be placed in the var/import folder. 
 
 ### Run your first import 
-Just call the MHSI with your URL: https://youronlinehsopurl.com/mhsi
+Just call the MHSI with your URL: https://youronlineshopurl.com/mhsi
 Please notice, that we **strongly recommend to protect this folder by htpasswd / htaccess protection**. 
 
 ### Documentation
