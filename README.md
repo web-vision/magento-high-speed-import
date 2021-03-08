@@ -57,6 +57,7 @@ Please notice, that we **strongly recommend to protect this folder by htpasswd /
 ### Documentation
 At the moment a more enhnaced German version of the package can be found here: 
 https://support.web-vision.de/produkte-und-software/magento-high-speed-import-3-1
+We are busy translating this documentation to English at the moment. For now, we recommend using deepl.com for translating
 
 ## Warranty
 This script comes without any warranty. Please use it at your own risk and make sure to take backups and test the script in a staging / development environment before you run it on a production system.
