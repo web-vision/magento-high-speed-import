@@ -1,0 +1,18 @@
+{% macro check(name, label, checked) %}
+    <div class="form-group">
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="hidden" name="{{ name }}" value="0" />
+                {% if checked %}
+                    <input class="form-check-input" type="checkbox" name="{{ name }}" checked value="1" >
+                {% else %}
+                    <input class="form-check-input" type="checkbox" name="{{ name }}" value="1" >
+                {% endif %}
+                {{ label }}
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+{% endmacro %}
+
+

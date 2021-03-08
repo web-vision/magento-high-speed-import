@@ -1,0 +1,62 @@
+/*
+ * FONT BASIC STYLES
+ * -----------------
+ * Version:     1.0
+ * Description: This file provides basic font styles.
+ * Requires:    -
+ * Usage:       Do not Touch!
+ *              The file is part of the SASS Base.
+ *
+ */
+
+
+
+
+
+/*
+ * BROWSER KERNING
+ * ---------------
+ * Description: The browser emphasizes legibility over rendering speed and geometric precision. This enables kerning and optional ligatures.
+ *
+ */
+
+
+* {
+    text-rendering: optimizeLegibility;
+}
+
+
+
+
+
+/*
+ * LINKS & BUTTONS
+ * ---------------
+ * Description: Remove dotted outline from links.
+ *
+ */
+
+
+a {
+    &:hover,
+    &:active,
+    &:focus {
+        outline: none !important;
+    }
+}
+
+
+
+
+
+/*
+ * BLOCKQUOTE
+ * ----------
+ * Description: fixes blockquote floating around images responsively. 
+ *
+ */
+
+
+blockquote {
+    overflow: hidden;
+}

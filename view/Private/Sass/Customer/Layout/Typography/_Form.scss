@@ -1,0 +1,162 @@
+// Buttons
+.btn {
+    border-radius: 0;
+    padding: .8em 1.2em;
+
+    &.btn-primary {
+        background-color: $orange;
+        border-color: $orange;
+        font-weight: 300;
+
+        &:hover,
+        &:focus {
+            background-color: $orange-200;
+            border-color: $orange-200;
+        }
+    }
+
+    &.btn-secondary {
+        background-color: $gray-500;
+        border-color: $gray-500;
+
+        &:hover,
+        &:focus {
+            background-color: $gray-600;
+            border-color: $gray-600;
+        }
+    }
+
+    &.btn-outline-secondary {
+        background-color: $gray-200;
+        border-color: $gray-500;
+        color: $gray-500;
+
+        &:hover,
+        &:focus {
+            background-color: $gray-300;
+        }
+    }
+
+    .btn-group & {
+        margin-right: 3px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+// Input fields
+.form-control {
+    border-color: $gray-400;
+    border-radius: 0;
+}
+
+// Checkboxes
+.form-check-label {
+    padding-left: 3.5rem;
+    position: relative;
+
+    input {
+        display: none;
+    }
+
+    .slider {
+        background-color: $gray-300;
+        border: 1px solid $gray-400;
+        cursor: pointer;
+        height: 1.5rem;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: .3s;
+        width: 2.5rem;
+
+        &:before {
+            background-color: $white;
+            border: 1px solid $gray-400;
+            content: '';
+            height: 1.5rem;
+            left: -.1rem;
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+            transition: .3s;
+            width: 1.5rem;
+        }
+    }
+}
+
+input:checked + .slider {
+    background-color: $green;
+}
+
+input:checked + .slider:before {
+    transform: translate(1.2rem, -50%);
+}
+
+.slider.round {
+    border-radius: 1em;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+// Select
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    &:focus {
+        &.form-control {
+        }
+    }
+
+    .fufu-select-wrap & {
+        width: calc(100% + 15px);
+    }
+
+    &.form-control {
+        background-image: url('../Images/ArrowDownGray400.svg');
+        background-repeat: no-repeat;
+        background-position: center right $space*3;
+        background-size: 1em;
+    }
+
+    &[multiple] {
+        background-color: $gray-200;
+        border: none;
+        padding: $space $space*3 $space 0;
+
+        &.form-control {
+            background-image: none;
+        }
+
+        option {
+            padding: .5rem .75rem;
+            margin-bottom: 2px;
+            color: $gray-500;
+            background-color: $gray-300;
+            transition: color .3s, background-color .3s;
+
+            &:hover,
+            &:focus,
+            &:active,
+            &:checked {
+                outline: none;
+                color: $gray-900;
+                background: $gray-500 linear-gradient(0deg, $green 0%, $green 100%);
+            }
+        }
+    }
+
+    option {
+        color: $gray-500;
+    }
+}
+
+.fufu-select-wrap {
+    overflow: hidden;
+}

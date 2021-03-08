@@ -1,0 +1,65 @@
+/*
+ * FONT MIXINS
+ * -----------
+ * Version:     1.2
+ * Description: This file provides font mixins.
+ * Requires:    -
+ * Usage:       Do not Touch!
+ *              The file is part of the SASS Base.
+ *
+ */
+
+
+/*
+ * FONTS
+ * -----
+ * Description: SASS mixin for extended CSS font property
+ * Requires:    Customer font-face file "../Resources/Private/Sass/Customer/Configuration/_FontFace.scss"
+ * Usage:       Append the mixin as CSS property to IDs or classes like [ @include font('MerriweatherSans', 300, normal, .2em); ]
+ *
+ */
+
+@mixin font($family, $weight:null, $style:null, $space:null) {
+    font-family: $family;
+    font-weight: $weight;
+    font-style: $style;
+    letter-spacing: $space;
+}
+
+
+/*
+ * TEXT VISIBILITY AND POSITION
+ * ----------------------------
+ *
+ */
+
+@mixin text-center {
+    text-align: center;
+}
+
+@mixin text-right {
+    text-align: right;
+}
+
+@mixin text-left {
+    text-align: left;
+}
+
+@mixin text-hidden {
+    display: none;
+}
+
+
+/*
+ * TEXT HYPHENS
+ * ------------
+ *
+ */
+
+@mixin text-hyphens {
+    hyphens: auto;
+}
+
+@mixin text-no-hyphens {
+    hyphens: none;
+}

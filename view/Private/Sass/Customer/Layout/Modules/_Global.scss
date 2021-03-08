@@ -1,0 +1,8 @@
+body {
+    @include font('Interface', 300, normal);
+    color: $gray-500;
+    
+    @include breakpoint(min-md) {
+        padding: $space*8 $space*3;
+    }
+}

@@ -1,0 +1,37 @@
+{% macro attrInput(attribute, attribute_code, area, value) %}
+    {% from 'Form/Input.twig' import input %}
+    {% from 'Form/Check.twig' import check %}
+
+    {% set id = (area ~ ' ' ~ attribute_code)|replace({'_':' '})|title|replace({' ':''}) %}
+    {% set name = 'config[' ~ area ~ '][' ~ attribute_code ~ ']' %}
+    <div class="form-group">
+        {% if (attribute.source_model == 'eav/entity_attribute_source_boolean') or (attribute.source_model == 'Magento\\Catalog\\Model\\Product\\Attribute\\Source\\Boolean') or (attribute.source_model == 'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Boolean') %}
+            {{ check(name, attribute.label, value == '1') }}
+        {% elseif attribute.frontend_input == 'select' %}
+            <label for="{{ id }}">{{ attribute.label }}</label>
+            <select class="form-control" id="{{ id }}" name="{{ name }}" >
+                {% for key, option in attribute.values %}
+                    {% if key == value %}
+                        <option value="{{ key|e('html') }}" selected >{{ option[0] }}</option>
+                    {% else %}
+                        <option value="{{ key|e('html') }}" >{{ option[0] }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        {% elseif attribute.frontend_input == 'multiselect' %}
+            <label for="{{ id }}">{{ attribute.label }}</label>
+            <select multiple size="{{ attribute.values|length }}" class="form-control" id="{{ id }}" name="{{ name }}">
+                {% for key, option in attribute.values %}
+                    {% if key == value %}
+                        <option value="{{ key|e('html') }}" selected >{{ option[0] }}</option>
+                    {% else %}
+                        <option value="{{ key|e('html') }}" >{{ option[0] }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        {% else %}
+            <label for="{{ id }}">{{ attribute.label }}</label>
+            {{ input('config[' ~ area ~ '][' ~ attribute_code ~ ']', attribute.label, id, value) }}
+        {% endif %}
+    </div>
+{% endmacro %}

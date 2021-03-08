@@ -1,0 +1,16 @@
+{% macro multiselect(name, label, id, options) %}
+    <div class="form-group">
+        <div class="fufu-select-wrap">
+            <label for="{{ id }}">{{ label }}</label>
+            <select multiple size="{{ options|length }}" class="form-control" id="{{ id }}" name="{{ name }}">
+                {% for option in options %}
+                    {% if option.selected %}
+                        <option value="{{ option.value|e('html') }}" selected >{{ option.label|default(option.value) }}</option>
+                    {% else %}
+                        <option value="{{ option.value|e('html') }}" >{{ option.label|default(option.value) }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endmacro %}

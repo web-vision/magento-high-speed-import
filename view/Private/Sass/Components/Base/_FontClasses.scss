@@ -1,0 +1,62 @@
+/*
+ * CSS CLASSES FOR FONTS
+ * ---------------------
+ * Version:     1.0
+ * Description: Load custom web fonts and Sass.
+ * Requires:    SASS Base configuration "../Classes/_Fonts.scss"
+ * Usage:       Do not Touch!
+ *              The file is part of the SASS Base.
+ *
+ */
+
+
+
+
+
+/*
+ * TEXT VISIBILITY AND POSITION
+ * ----------------------------
+ * Description: Expends the bootstrap CSS text declaration classes like [ .text-center ] with new options.
+ * Requires:    -
+ * Usage:       Append the following classes to an HTML tag
+ *
+ */
+
+
+.text-hidden {
+  @include text-hidden;
+}
+
+.text-center {
+  @include text-center;
+}
+
+.text-right {
+  @include text-right;
+}
+
+.text-left {
+  @include text-left;
+}
+
+
+
+
+
+/*
+ * TEXT HYPHENS
+ * ------------
+ * Description: Expends the bootstrap CSS text declaration classes like [ .text-center ] with new options.
+ * Requires:    -
+ * Usage:       Append the following classes to an HTML tag
+ *
+ */
+
+
+.text-hyphens {
+  @include text-hyphens;
+}
+
+.text-no-hyphens {
+  @include text-no-hyphens;
+}

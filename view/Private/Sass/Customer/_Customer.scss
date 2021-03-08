@@ -1,0 +1,28 @@
+/*
+ * CUSTOMER STYLES
+ * ---------------
+ * Description: Loads your customer SASS files.
+ * Requires:    SASS Base configuration and SASS Copy.
+ * Usage:       Include your custom styles here.
+ *              ! Note: the _FontFace.scss file is already included at top of the app.scss file to address IE issues with font loading order.
+ *
+ */
+
+
+// Variables
+@import     'Configuration/Variables/Variables';
+
+
+//Customer configuration
+@import     'Configuration/Typography/Font',
+            'Configuration/Layout/Space';
+
+
+//Customer layout
+ @import    'Layout/Media/Icons',
+            'Layout/Typography/Font',
+            'Layout/Typography/Form',
+            'Layout/Modules/Global',
+            'Layout/Modules/Box',
+            'Layout/Modules/Section',
+            'Layout/Modules/Mapping';

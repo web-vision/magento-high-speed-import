@@ -1,0 +1,19 @@
+@mixin fufu-padding-default {
+    padding: $space * 3;
+
+    @include breakpoint(min-md) {
+        padding: $space * 6;
+    }
+}
+
+@mixin fufu-mb-default {
+    margin-bottom: $space * 3;
+
+    @include breakpoint(min-md) {
+        margin-bottom: $space * 6;
+    }
+}
+
+.fufu-mb-default {
+    @include fufu-mb-default;
+}

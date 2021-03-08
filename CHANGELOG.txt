@@ -1,0 +1,260 @@
+3.2.0.0
+- [Feature] Clear all special prices and per product
+
+3.1.3.0
+- [Bugfix] Plus sign '+' will be replaced with 'plus' during normalize URL
+
+3.1.2.0
+- [Bugfix] Fixed adding attribute option values for Magento 2 and handle undefined offset error
+
+3.1.1.0
+- [Bugfix] Bearbeiten der SKU durch den Preprozessor ermöglicht
+
+3.1.0.0
+- [Feature] Auto. Hinzufügen von Überschriften
+
+3.0.0.0
+- [Feature] Import von Kategorien
+- [Cleanup] Rewrite und cleanup des Produkt-Importes
+
+2.37.34.41
+- [Feature] Konfiguration Option um Bedingung beim deaktivieren der Produkte hinzuzufügen
+
+2.36.34.41
+- [BugFix] Empty sku was never properly checked
+
+2.36.33.41
+- [Feature] Konfigurations Option um deaktivierte Produkte nach dem Import zu löschen
+
+2.35.33.41
+- [BugFix] Standardwert für Attribute wurde nicht korrekt ausgelesen, wenn dieser 0 ist
+
+2.35.32.41
+- [Verbesserung] Neue Option um zu bestimmen ob bestehende website Relationen entfernt werden sollen oder nicht
+
+2.34.32.41
+- [Verbesserung] Hinzufügen von unset nach dem Iterieren mit Referenz um Problemen vorzubeugen
+
+2.34.32.40
+- [BugFix] Wenn ein Attribut ein Pflichtfeld ist, wurde immer der default Wert gesetzt auch wenn die csv einen Wert geliefert hat
+
+2.34.31.40
+- [BugFix] Wenn default Wert gesetzt wird wird nichtmehr erzwungen, dass hasField true zurück gibt.
+
+2.34.30.40
+- [Feature] Bildnamen können über die Spalten image_label, small_image_label und thumbnail_label gesetzt werden. Zudem können über die Spalte image_excluded Bilder aus der Gallery exluded werden.
+
+2.33.30.40
+- [Feature] In der Konfig kann nun der Produkt Identifier bestimmt werden, falls nicht die sku zur ermittlung der entity_id genommern werden soll
+- [Verbesserung] Wenn default Wert gesetzt wird gibt hasField auch true zurück
+- [Verbesserung] Flush nach jedem Produkt, da nach der Buffer bereits voll ist befor 100 Produkte durch sind
+- [Verbesserung] Mehrfache Ausgabe von "Kein Bild mit dem Namen..." wird nun verhindert
+- [Verbesserung] &nbsp; im Bilderimport abfangen
+
+2.32.30.35
+- [Verbesserung] Wenn importGallery deaktiviert ist, werden image, small_image und thumbnail aus dem varchar attribute entfernt
+- [Verbesserung] Pre- und Postprocessor bekommen nun das Profil übergeben damit Profil abhängige Änderungen gemacht werden können
+
+2.32.30.34
+- [Verbesserung] Post- und Pre-Processor laden jetzt nurnoch php Dateien
+
+2.32.30.33
+- [BugFix] Nicht strikte überprüfung von Variablen führte zu Problemen
+
+2.32.29.33
+- [BugFix] unset wurde ausgeführt und dann die Variable ausgegeben was zu einer undefined index Warnung führte
+- [Verbesserung] Nach dem lesen der mappings wird überprüft ob ein Wert ein array ist, was vorkommt, wenn man zweimal den selben key verwendet, was aber nicht sein darf
+- [Feature] Ausgabe des Dateinamens der importiert wird
+- [Feature] Backmapping der Feldnamen bei Fehlerausgaben
+
+2.30.28.32
+- [Feature] Import der Produkte in mehrere Websites ist nun möglich
+- [Verbesserung] catalog_category_product_index wird nichtmehr befüllt, da der Index eh neu generiert werden muss
+
+2.29.28.31
+- [BugFix] Da der gesuchte Attribute Code immer zum array hinzugefügt wurde, war eine Überprüfung auf ein leeres Array immer false, was später zu SQL Fehlern geführt hat
+
+2.29.27.31
+- [BugFix] Wenn global importiert wird wurden select und multiselect values nicht gefunden, da die store id des values niemals gleich 0 ist.
+- [BugFix] Wenn aus irgendeinem Grund kein value für ein Attribut gefunden wurde, wurde nicht auf den default Wert zurückgefallen.
+
+2.29.25.31
+- [Feature] Bei Attributen mit source_model werden die Werte nun über Magento bezogen
+- [Feature] Attribute die Pflichtfelder sind und nicht in der CSV vorkommen bekommen einen default Wert
+- [Feature] Wenn importGlobally = 0 ist können StoreView spezifische Übersetzungen für select und multiselect Attribute hinterlegt werden im Format {adminValue}=>{storeViewValue} z.B. "chair=>Stuhl"
+
+2.26.25.31
+- [BugFix] Wenn eine XML Datei zu einem Array konvertiert wurde und am Anfang ein Kommentar stand, wurde nur der Kommentar geparst
+
+2.26.24.31
+- [Feature] Man kann nun in der Konfiguration Ausnahmen für die Pflichtfelder-Abfrage definieren
+
+2.25.24.31
+- [BugFix] Wenn keine mappings genutzt wurden fürte die Abfrage der Pflichtfelder zu einer Exception
+
+2.25.23.31
+- [BugFix] Wenn keine alte Kategoriezuweisung gefunden wurde wird false zurückgeliefert was dazu führt, dass in_array eine Warnung wirft und keine Kategorie geupdatet wurde.
+
+2.25.22.31
+- [Verbesserung] fgetcsv kann ab PHP 5.1.0 den Wert 0 als Zeilen-Länge annehmen. Somit ist es auch möglich importe mit sehr langen Zeilen korrekt zu verarbeiten.
+
+2.25.22.30
+- [Feature] PHP Scripte können jetzt entweder vor oder nach dem Import durchgeführt werden. Scripte müssen konfiguriert werden. Als Beispiel wurde ein Email Script hinzugefügt.
+
+2.24.22.30
+- [Feature] In der Config können Pflichtfelder definiert werden. Ist ein Pflichtfeld nicht in der Datei wird der Import abgebrochen. Ist ein Pflichtfeld nicht befüllt wird die Zeile in die Datei missingMandatories.csv geschrieben. Die Datei enthält zudem eine Spalte welche ausgibt welche Felder nicht befüllt sind.
+
+2.23.22.30
+- [BugFix] cleanup der gespeicherten Query Teile falls Query nicht ausgeführt wurde
+
+2.23.21.30
+- [BugFix] Auflösen von Werten in Klammern innerhalb einer where condition war fehlerhaft
+
+2.23.20.30
+- [Verbesserung] date_default_timezone_set Methode hinzugefügt um Fatal Error zu verhindern falls die Zeitzone nicht in der php.ini gesetzt wurde
+
+2.23.20.29
+- [BugFix] Bei der Kategorie->Product Relation wurde die visibility als Array übergeben statt als String
+
+2.23.19.29
+- [Verbesserung] Überall einen Zeilenumbruch ans Ende einer Ausgabe hinzugefügt, damit Text auch in Konsole lesbar wird
+
+2.23.19.28
+- [Verbesserung] Beim Updaten der Kategorie->Produkt Relation wird die Position nurnoch überschrieben, wenn diese expliziet in der Datei angegeben wurde
+
+2.23.19.27
+- [Verbesserung] GalleryHelper hat fälschlicherweise alles nach einem Punkt als Dateiendung erkannt
+
+2.23.19.26
+- [BugFix] Attribut Scope Website und Global vertauscht
+
+2.23.18.26
+- [Verbesserung] Output Buffering hinzugefügt um Ausgabe an den Browser zu verbessern und Timeouts mit curl zu verhindern
+
+2.23.18.25
+- [BugFix] vergleich 0 != '' ergab false statt true, auslesen von 0 aus der Datei war daher fehlerhaft
+
+2.23.17.25
+- [Verbesserung] Wenn der Ordner bin/processors nicht existiert wird dieser angelegt
+
+2.23.17.24
+- [BugFix] Fehler im Update Prozess von Attributen behoben
+- [Feature] Pre/PostProzessor für Produkte
+
+2.22.16.24
+- [BugFix] Beim Überschreiben von Attributen mit einem Scope != 1 und importGlobally = 0 wurde der global Wert überschrieben statt dem store/website spezifischem
+- [Verbesserung] Eintragen/updaten von Attributen beim update eines Produktes stark verbessert
+
+2.22.15.23
+- [BugFix] Neue Kategorien wurden mit Position ("Name:2") angelegt
+
+2.22.14.23
+- [BugFix] Duplicate Entry MySQL Error wenn Kategorie Id mehrfach vorkam
+
+2.22.13.23
+- [Feature] Konfigurations Option für Standard Position eines Produktes in einer Kategorie
+- [Feature] Konfigurations Option ob Datei mit formatierter DateTime ausgabe archiviert werden soll
+
+2.20.13.23
+- [Feature] Attribute für Konfigurierbare Produkte werden in der Reihenfolge importiert in der sie in der csv stehen
+
+2.19.13.23
+- [Feature] Konfigurations Option für Split der Bilder
+- [Feature] Deutsche Werte für Magento eigene Dropdowns möglich
+- [Feature] Beginn der verarbeitung ab einer bestimmten Zeile mit dem GET-Parameter 'startAt'
+- [Verbesserung] Konfigurations Option für DateTime Format falls die Datei ein ungültiges Format für Datums-Attribute hat
+- [Verbesserung] Gallery respektiert wenn import bereits Pfade im Format a/b/ab.png hat
+
+2.16.13.21
+- [Verbesserung] backwards compatibility für magento 1.6.x Kategorien
+
+2.16.13.20
+- [BugFix] mehrdimensionale arrays wurde mit array_merge kombiniert, was ein eindimensionales array daraus gemacht hat
+
+2.16.12.20
+- [BugFix] nicht vorhandene Konstante statt Variable genutzt (fehlendes $)
+
+2.16.11.20
+- [BugFix] Falscher Abruf einer Variable der beim Refactorn vergessen wurde
+
+2.16.10.20
+- [Feature] Spalte um Lagerverwaltung zu aktivieren und deaktivieren
+
+2.15.10.20
+- [Feature] Mapping der Spaltennamen über configurierbare Datei möglich
+- [Verbesserung] Wenn es keine Kategorie gibt wird die root Kategorie genommen
+
+2.14.10.19
+- [BugFix] Zwei kleine Bugs mit simple products optionen behoben
+
+2.14.9.19
+- [Feature] Import von optionen für simple products möglich (Ausnahme Typen: Dropdown, Radio Buttons, Checkboxen, Mehrfach Auswahl)
+
+2.13.9.19
+- [Verbesserung] wenn special to date in der csv ist, aber die Zelle leer ist wurde das aktuelle Datum genommen
+
+2.13.9.18
+- [Feature] url_key wird nur automatisch generiert, wenn dieser nicht über die Datei gesetzt wird
+- [Feature] neu config option, alte categorySeperate ist nun subCategorySeperate und "neue" option categorySeperate ist zum unterteilen von mehreren Kategorien die zugewiesen werden sollen
+
+2.11.9.18
+- [Verbesserung] Sonderpreis darf nurnoch 0 sein wenn dies so auch in der Datei steht
+- [BugFix] Root Kategorie ist nicht richtig zum array hinzugefügt worden
+
+2.11.8.17
+- [Feature] Nachlieferungen kann importiert werden {0 = "Keine Nachlieferung", 1 = "Lagerbestand unter 0 erlauben", 2 = "Lagerbestand unter 0 erlauben und Kunden darüber informieren"}
+
+2.10.8.17
+- [BugFix] falsche variable übergeben
+
+2.10.8.16
+- [Feature] Die position des Produktes in der Kategorie kann jetzt festgelegt werden Syntax: "OberKategorie#Unterkategorie:2,Oberkategorie#Unterkategorie2:5" oder als id's "5:2,7:5"
+
+2.9.8.16
+- [Verbesserung] Vermeidung von Fehlerausgabe bei Bildern wenn noch keine in der Datenbank sind
+
+2.9.8.15
+- [BugFix] Bei updates ohne image Spalte werden die extra Bilder entfernt
+
+2.9.7.15
+- [Verbesserung] Wenn categorien Spalte vorhanden und Wert leer, dann lösche Produkt Kategorien Relation
+
+2.9.7.14
+- [Verbesserung] Die suche nach der Attribute ID wurde entfernt um Probleme zu vermeiden, in der CSV müssen nun zwingend die Ausgeschriebenen Werte stehen
+- [Verbesserung] Ausgabe am Ende des imports hinzugefügt.
+
+2.9.7.12
+- [Verbesserung] Kein Hinweis wenn Bildname leer war.
+
+2.9.7.11
+- [Verbesserung] boolean Attribute können jetzt in der csv auch mit yes/ja bzw. no/nein deklariert werden. incasesensitive
+
+2.9.7.10
+- [Feature] neue config Option "importGlobally" sorgt dafür das ein Produkt beim update immer global importiert wird
+- [BugFix] nutzung der neuen Option damit bei Seiten mit einer Website und einem Store die Produkte im BE richtig dargestellt und geändert werden können
+
+2.8.6.10
+- [Feature] min_sale_qty und max_sale_qty werden jetzt ebenfalls importiert
+
+2.7.6.10
+- [Verbesserung] Wenn bei category_ids for oder nach dem Komma ein Leerzeichen war wurde die Kategorie nicht gefunden
+
+2.7.6.9
+- [BugFix] Gallery: zuweisung einer Variable statt überprüfung
+
+2.7.5.9
+- [Feature] Import von is_qty_decimal
+- [Feature] Import von qty_increments (Verpackungseinheit)
+
+2.6.5.9
+- [Verbesserung] wenn imagePrefix leer war wurde es nicht als leerer String sondern als array interpretiert
+
+2.6.5.8
+- [Feature] Wenn kein Bild angegeben wurde wird versucht die SKU als Bildname zu nehmen
+
+2.5.5.8
+- [BugFix] Select und Multiselect Attribute mit Übersetzungen wurden nicht gefunden und somit mehrfach angelegt
+
+2.5.4.8
+- [Verbesserung] Attribute können nicht mehr mit leerem String " " angelegt werden
+- [Verbesserung] Kommentar in config, das defaults/websites nicht 0 sein darf

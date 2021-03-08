@@ -1,0 +1,20 @@
+.fufu-box,
+.fufu-box-full {
+    @include fufu-padding-default;
+    background-color: $gray-200;
+    border-radius: 0;
+    margin-bottom: $space;
+
+    hr {
+        border-color: $gray-300;
+    }
+}
+
+.fufu-box {
+    border-color: $gray-300;
+}
+
+.fufu-box-full {
+    background-color: $gray-300;
+    border-color: $gray-400;
+}

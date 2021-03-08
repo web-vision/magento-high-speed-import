@@ -1,0 +1,46 @@
+/*
+ * GLOBAL SASS MIXINS
+ * ------------------
+ * This file provides global layout mixins.
+ * Requires:    -
+ * Usage:       Do not Touch!
+ *              The file is part of the SASS Base.
+ *
+ */
+
+
+
+
+
+/*
+ * Clearfix
+ * --------
+ * Usage: add [ @include ... ] to element.
+ * Requires: -
+ */
+
+@mixin twin-towers {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+
+
+
+
+/*
+ * Hidden Elements
+ * ---------------
+ * Usage: add [ @include ... ] to element.
+ * Requires: -
+ */
+
+@mixin ninja {
+    visibility: hidden;
+}

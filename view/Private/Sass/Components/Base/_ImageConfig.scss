@@ -1,0 +1,16 @@
+/*
+ * MEDIA BASIC FIXES
+ * -----------------
+ * Description: This file provides basic browser hacks for media.
+ * Requires:    -
+ * Usage:       Do not Touch!
+ *              The file is part of the SASS Base.
+ *
+ */
+
+
+img {
+    border: none;
+    max-width: 100%;
+    height: auto;
+}

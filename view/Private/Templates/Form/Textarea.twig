@@ -1,0 +1,10 @@
+{% macro textarea(name, label, id, value = '', rows = 3) %}
+
+    <div class="form-group">
+        <label for="{{ id }}">{{ label }}</label>
+        <textarea id="{{ id }}" class="form-control" rows="{{ rows }}" name="{{ name }}" >
+            {{ value|raw }}
+        </textarea>
+    </div>
+
+{% endmacro %}

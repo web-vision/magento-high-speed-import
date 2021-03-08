@@ -1,0 +1,28 @@
+/*
+ * BASIC STYLES FOR CONTENT
+ * ------------------------
+ * Version:     1.0
+ * Description: Provides several CSS classes for content.
+ * Requires:    -
+ * Usage:       Do not touch!
+ *              If you do so, you are not longer able to run updates without overwriting your changes.
+ *              The file is part of the Frontend Base components.
+ *
+ */
+
+
+
+
+
+/*
+ * REMOVE MARGIN FROM FIRST AND LAST CHILD
+ * ---------------------------------------
+ * Description: Removing margin top from first and margin bottom from last element inside of the "box" element.
+ * Usage:       Append in HTML as CSS class to your "box" element.
+ *
+ */
+ 
+
+.febs-box {
+    @include febs-box;
+}

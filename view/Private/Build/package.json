@@ -1,0 +1,30 @@
+{
+  "name": "SimpleGruntTask",
+  "description": "A simple frontend building tool for compiling sources.",
+  "author": "Florian Steller",
+  "version": "1.0.1",
+  "private": true,
+  "readme": "README.md",
+  "dependencies": {
+    "autoprefixer": "^7.1.2",
+    "bootstrap": "^4.0.0-alpha.6",
+    "bs-html-injector": "^3.0.0",
+    "grunt": "^1.0.1",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^2.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-uglify": "^3.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-newer": "^1.2.0",
+    "grunt-notify": "^0.4.5",
+    "grunt-postcss": "^0.8.0",
+    "grunt-sass": "^2.0.0",
+    "grunt-shell": "^2.1.0",
+    "jquery": "^3.2.1",
+    "load-grunt-tasks": "^3.5.2",
+    "normalize-scss": "^7.0.0",
+    "time-grunt": "^1.4.0"
+  }
+}

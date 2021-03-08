@@ -1,0 +1,51 @@
+.CemesMsg_default,
+.CemesMsg_emergency,
+.CemesMsg_alert,
+.CemesMsg_critical,
+.CemesMsg_error,
+.CemesMsg_warning,
+.CemesMsg_notice,
+.CemesMsg_info,
+.CemesMsg_debug,
+.CemesMsg_success {
+    background-position: 5px 5px;
+    background-repeat: no-repeat;
+    background-size: 32px 32px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    webkit-border-radius: 10px;
+    color: #000000;
+    margin: 10px;
+    min-height: 35px;
+    padding: 5px 5px 5px 50px;
+    width: 674px;
+}
+
+.CemesMsg_emergency,
+.CemesMsg_alert,
+.CemesMsg_critical,
+.CemesMsg_error  {
+    background-color: #FF5757;
+    background-image: url(../images/error-icon.svg);
+}
+
+.CemesMsg_warning {
+    background-color: #FFFF57;
+    background-image: url(../images/warning-icon.svg);
+}
+
+.CemesMsg_notice,
+.CemesMsg_info {
+    background-color: #5775FF;
+    background-image: url(../images/notice-icon.svg);
+}
+
+.CemesMsg_debug {
+    background-color: #808080;
+}
+
+.CemesMsg_success {
+    background-color: #57FF57;
+    background-image: url(../images/success-icon.svg);
+}

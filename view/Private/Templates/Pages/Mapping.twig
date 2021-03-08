@@ -1,0 +1,102 @@
+{% extends "Layouts/Page.twig" %}
+
+{% from 'Form/Input.twig' import input %}
+{% from 'Form/Select.twig' import select %}
+
+{% block title %}Mapping Form{% endblock %}
+
+{% block content %}
+    <header class="fufu-page-header">
+        <div class="container">
+            <a href="config.php?view[controller]=home" role="button" class="btn btn-sm btn-outline-secondary">Back</a>
+
+            <section class="fufu-section-content">
+                <h2>Create New Mapping File</h2>
+            </section>
+        </div>
+    </header>
+
+    <div class="febs-page-content">
+        <div class="container">
+            <form class="mapping-form" action="config.php?view[controller]=mapping&view[action]=save" method="post">
+
+                <div class="card fufu-box">
+                    <div class="card-block">
+                        <h4 class="card-title"></h4>
+                        {% if filename %}
+                            {{ input('mapping[file][name]', 'File Name', 'fileName' , filename, 'hidden', true) }}
+                        {% else %}
+                            {{ input('mapping[file][name]', 'File Name', 'fileName' , '', 'text', true) }}
+                        {% endif %}
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>
+                                    <strong>CSV Value</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+                                    <strong>Product Attribute</strong>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 fufu-mapping-wrap" id="js-mapping-wrap">
+
+                                    {% if mappings %}
+                                        {% for key, mapping in mappings %}
+                                            <div class="row js-mapping-field">
+                                                <div class="col-md-6">
+                                                    {{ input('mapping[csv][]', '', 'csv', mapping.csv ) }}
+                                                </div>
+                                                <div class="col-md-5">
+                                                    {{ select('mapping[attr][]', '', 'products', mapping.products ) }}
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <button type="button" class="remove"><span aria-hidden="true">Remove</span></button>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <div class="row js-mapping-field">
+                                            <div class="col-md-6">
+                                                {{ input('mapping[csv][0]', '', 'csvField0' ) }}
+                                            </div>
+                                            <div class="col-md-5">
+                                                {{ select('mapping[attr][0]', '', 'attr0', products ) }}
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button type="button" class="remove"><span aria-hidden="true">Remove</span></button>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="fufu-mapping-add">
+                                <button type="button" class="add"><span aria-hidden="true">Add</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fufu-section-content">
+                    <input type="submit" value="submit" name="mapping[submit]" role="button" class="btn btn-primary btn-block" />
+                </div>
+            </form>
+            <div id="js-mapping-default" style="display: none;">
+                <div class="row js-mapping-field">
+                    <div class="col-md-6">
+                        {{ input('mapping[csv][###COUNT###]', '', 'csvField###COUNT###' ) }}
+                    </div>
+                    <div class="col-md-5">
+                        {{ select('mapping[attr][###COUNT###]', '', 'attr###COUNT###', products ) }}
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="remove"><span aria-hidden="true">Remove</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

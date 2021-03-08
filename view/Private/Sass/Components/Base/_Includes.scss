@@ -1,0 +1,34 @@
+/*
+ * SASS BASE INCLUDES
+ * ------------------
+ * Version:     1.2
+ * Description: This file is included in your main scss file.
+ * Requires:    SASS Base
+ * Usage:       Do not touch!
+ *              If you do so, you are not longer able to run updates without overwriting your changes.
+ *              This file loads the SASS base components.
+ *              For custom SASS include use the customer folder.
+ *
+ */
+
+
+
+
+
+/*
+ * CONFIGURATION
+ * -------------
+ * In this part, all the basic configurations of the Sass base are loaded. You should keep them
+ *
+ */
+
+
+@import 'Variables',
+        'Mixins',
+        'FontConfig',
+        'FontMixins',
+        'FontClasses',
+        'ContentMixins',
+        'ContentClasses',
+        'BreakpointMixins',
+        'ImageConfig';

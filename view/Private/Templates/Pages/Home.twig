@@ -1,0 +1,41 @@
+{% extends "Layouts/Page.twig" %}
+
+{% from 'Form/Select.twig' import select %}
+
+{% block title %}Import Configuration{% endblock %}
+
+{% block content %}
+    <header class="fufu-page-header">
+        <div class="container">
+            <section class="fufu-section-content">
+                <h2>Import Configuration</h2>
+            </section>
+        </div>
+    </header>
+    <main class="febs-page-content">
+        <div class="container">
+            <div class="card fufu-box">
+                <h4>Import Profiles</h4>
+                <a href="config.php?view[controller]=profile" role="button" class="btn btn-success btn-block">Create new Import Profile</a>
+                {% for file in files %}
+                    <a href="config.php?view[controller]=profile&view[configfile]={{ file.name }}" role="button" class="btn btn-primary btn-block">Edit Profile {{ file.name }}</a>
+                {% endfor %}
+            </div>
+
+            <div class="card fufu-box">
+                <h4>CSV headline mapping</h4>
+                <a role="button" class="btn btn-success btn-block" href="config.php?view[controller]=mapping">Create Mapping manually</a>
+                {% for mapping in mappings %}
+                    <a role="button" class="btn btn-primary btn-block" href="config.php?view[controller]=mapping&view[action]=update&view[mapping]={{ mapping.name }}">Edit Mapping {{ mapping.name }}</a>
+                {% endfor %}
+                <br/>
+
+                <h5>Create mapping from exist mapping</h5>
+                <form action="config.php?view[controller]=mapping&view[action]=clone" method="post">
+                    {{ select('config[mapping][file]', '', 'mappingFile', mappingClone ) }}
+                    <input type="submit" value="clone" name="config[submit]" role="button" class="btn btn-success btn-block" />
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}

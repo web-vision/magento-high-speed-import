@@ -1,0 +1,79 @@
+/*
+ * SASS BASE FILE
+ * --------------
+ * Version:     1.1
+ * Description: Load custom web fonts and Sass.
+ * Requires:    SASS Base configuration and SASS Copy
+ * Usage:       Do not Touch!
+ *              Include your SASS styles into /Customer/_Customer.scss
+ */
+
+
+
+
+
+ /*
+ * CHARSET OF CSS DOCUMENT
+ * -----------------------
+ * Setting charset of the document to the default UTF-8.
+ *
+ */
+
+
+@charset 'UTF-8';
+
+
+
+
+
+ /*
+ * FONTS
+ * -----
+ * First at all: include font-face (for IE).
+ *
+ */
+
+
+@import 'Customer/Configuration/Typography/FontFace';
+
+
+
+
+
+/*
+ * SASS BASE
+ * ---------
+ * Include SASS styles from Frontend Base. for individual configuration see file header
+ *
+ */
+
+
+@import 'Components/Base/Includes';
+
+
+
+
+
+/*
+ * COMPONENT INCLUDES
+ * ------------------
+ * Includes of all Components you will copy with Grunt to your project
+ *
+ */
+
+
+@import 'Components/Includes';
+
+
+
+
+
+/*
+ * INCLUDING CUSTOMER STYLES
+ * -------------------------
+ * The styles of your customer goes here
+ *
+ */
+
+
+@import 'Customer/Customer';

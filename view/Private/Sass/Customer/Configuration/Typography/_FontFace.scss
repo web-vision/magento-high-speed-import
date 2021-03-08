@@ -1,0 +1,24 @@
+/*
+ * WEBFONTS
+ * --------
+ * Version:     1.1
+ * Description: Include your webfont kits here.
+ * Requires:    ../Base/Sass/Configuration/_fonts.scss
+ * Usage:       This file is already included at top of the app.scss file to address IE issues with font loading order.
+ *              [ @include font('fontName', 500, normal, .02em); ] - see required file.
+ *
+ */
+
+
+// Interface
+@font-face {
+ font-family: 'Interface';
+ src: url('../Fonts/Interface/Interface-Regular.eot');
+ src: url('../Fonts/Interface/Interface-Regular.eot?#iefix') format('embedded-opentype'),
+ url('../Fonts/Interface/Interface-Regular.woff2') format('woff2'),
+ url('../Fonts/Interface/Interface-Regular.woff') format('woff'),
+ url('../Fonts/Interface/Interface-Regular.ttf') format('truetype'),
+ url('../Fonts/Interface/Interface-Regular.svg#parisienneregular') format('svg');
+ font-style: normal;
+ font-weight: normal;
+}

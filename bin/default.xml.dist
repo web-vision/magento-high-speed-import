@@ -1,0 +1,73 @@
+<config>
+    <file>
+        <path>../var/import/import_all_products.csv</path>
+        <delimiter>;</delimiter>
+        <enclosure>"</enclosure>
+        <archive_with_datetime>1</archive_with_datetime>
+    </file>
+
+    <general>
+        <reload_cache>1</reload_cache>
+        <disable_products>0</disable_products>
+        <delete_disabled_products>0</delete_disabled_products>
+        <delete_products_not_in_csv>0</delete_products_not_in_csv>
+        <unset_special_price>0</unset_special_price>
+        <delete_all_special_prices>0</delete_all_special_prices>
+    </general>
+
+    <dataprocessing>
+        <general>
+            <mode>products</mode>
+            <import>both</import>
+            <cache_lines>200</cache_lines>
+            <!-- mappings file relative to bin/mappings folder -->
+            <mappings>none</mappings>
+            <strip_html_tags>0</strip_html_tags>
+            <import_globally>1</import_globally>
+            <!-- only change if you don't have a valid DateTime format in your file -->
+            <date_time_format>Y.m.d H:i:s</date_time_format>
+        </general>
+
+        <images>
+            <image_prefix/>
+            <image_split>,</image_split>
+            <sku_fallback>1</sku_fallback>
+            <import_gallery>1</import_gallery>
+        </images>
+
+        <products>
+            <identifier>sku</identifier>
+            <clear_existing_websites>1</clear_existing_websites>
+        </products>
+    </dataprocessing>
+
+    <general_defaults>
+        <!-- website is not allowed to be 0 -->
+        <websites>1</websites>
+        <!-- if store is 0 import will determine all substores of the website -->
+        <store>0</store>
+    </general_defaults>
+
+    <product_defaults>
+        <attribute_set>4</attribute_set>
+        <status>1</status>
+        <visibility>4</visibility>
+        <tax_class_id>11</tax_class_id>
+        <options_container>container1</options_container>
+        <type_id>simple</type_id>
+    </product_defaults>
+
+    <category_defaults>
+        <root_category>2</root_category>
+        <is_active>1</is_active>
+        <include_in_menu>1</include_in_menu>
+    </category_defaults>
+
+    <category_settings>
+        <root_category>2</root_category>
+        <category_separate>,</category_separate>
+        <sub_category_separate>#</sub_category_separate>
+        <create_categories>1</create_categories>
+        <default_product_position>1</default_product_position>
+    </category_settings>
+</config>

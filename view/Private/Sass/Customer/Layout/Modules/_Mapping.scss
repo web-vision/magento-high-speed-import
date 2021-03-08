@@ -1,0 +1,15 @@
+.fufu-mapping-wrap {
+    label {
+        display: block;
+    }
+
+    button {
+        &.remove {
+            margin-top: 1em;
+        }
+    }
+}
+
+.fufu-mapping-add {
+    margin-top: $space*3;
+}

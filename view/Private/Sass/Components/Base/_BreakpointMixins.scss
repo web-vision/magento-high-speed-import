@@ -1,0 +1,268 @@
+/*
+ * MEDIA QUERIES FOR BOOTSTRAP
+ * ---------------------------
+ * Description: This file provides media query mixins for bootstrap with additional sizes.
+ * Requires:    -
+ * Usage:       Do not Touch!
+ *              The file is part of the SASS Base.
+ *
+ */
+
+
+@mixin breakpoint($point) {
+
+    // MEDIA QUERIES FOR WIDTH
+    // Huge displays
+    @if $point == min-xxhg {
+        @media (min-width: 3440px) {
+            @content;
+        }
+    }
+
+    @if $point == max-xxhg {
+        @media (max-width: 3439px) {
+            @content;
+        }
+    }
+
+    @if $point == min-xhg {
+        @media (min-width: 2500px) {
+            @content;
+        }
+    }
+
+    @if $point == max-xhg {
+        @media (max-width: 2499px) {
+            @content;
+        }
+    }
+
+    @if $point == min-hg {
+        @media (min-width: 1920px) {
+            @content;
+        }
+    }
+
+    @if $point == max-hg {
+        @media (max-width: 1919px) {
+            @content;
+        }
+    }
+
+    // Large displays
+    @if $point == min-xxlg {
+        @media (min-width: 1600px) {
+            @content;
+        }
+    }
+
+    @if $point == max-xxlg {
+        @media (max-width: 1599px) {
+            @content;
+        }
+    }
+
+    @if $point == min-xlg {
+        @media (min-width: 1366px) {
+            @content;
+        }
+    }
+
+    @if $point == max-xlg {
+        @media (max-width: 1365px) {
+            @content;
+        }
+    }
+
+    @if $point == min-lg {
+        @media (min-width: 1200px) {
+            @content;
+        }
+    }
+
+    @if $point == max-lg {
+        @media (max-width: 1199px) {
+            @content;
+        }
+    }
+
+    // Mid size displays
+    @else if $point == min-md {
+        @media (min-width: 992px) {
+            @content;
+        }
+    }
+
+    @else if $point == max-md {
+        @media (max-width: 991px) {
+            @content;
+        }
+    }
+
+    // Small displays
+    @else if $point == min-sm {
+        @media (min-width: 768px) {
+            @content;
+        }
+    }
+
+    @else if $point == max-sm {
+        @media (max-width: 767px) {
+            @content;
+        }
+    }
+
+    // Extra small displays
+    @else if $point == min-xs {
+        @media (min-width: 641px) {
+            @content;
+        }
+    }
+
+    @else if $point == max-xs {
+        @media (max-width: 640px) {
+            @content;
+        }
+    }
+
+    @else if $point == min-xxs {
+        @media (min-width: 481px) {
+            @content;
+        }
+    }
+
+    @else if $point == max-xxs {
+        @media (max-width: 480px) {
+            @content;
+        }
+    }
+
+    @else if $point == min-xxxs {
+        @media (min-width: 321px) {
+            @content;
+        }
+    }
+
+    @else if $point == max-xxxs {
+        @media (max-width: 320px) {
+            @content;
+        }
+    }
+
+    // MEDIA QUERIES FOR HEIGHT
+    // Large displays
+    @if $point == min-h-xxlg {
+        @media (min-height: 1600px) {
+            @content;
+        }
+    }
+
+    @if $point == max-h-xxlg {
+        @media (max-height: 1599px) {
+            @content;
+        }
+    }
+
+    @if $point == min-h-xlg {
+        @media (min-height: 1366px) {
+            @content;
+        }
+    }
+
+    @if $point == max-h-xlg {
+        @media (max-height: 1365px) {
+            @content;
+        }
+    }
+
+    @if $point == min-h-lg {
+        @media (min-height: 1200px) {
+            @content;
+        }
+    }
+
+    @if $point == max-h-lg {
+        @media (max-height: 1199px) {
+            @content;
+        }
+    }
+
+    // Mid size displays
+    @else if $point == min-h-md {
+        @media (min-height: 992px) {
+            @content;
+        }
+    }
+
+    @else if $point == max-h-md {
+        @media (max-height: 991px) {
+            @content;
+        }
+    }
+
+    // Small displays
+    @else if $point == min-h-sm {
+        @media (min-height: 768px) {
+            @content;
+        }
+    }
+
+    @else if $point == max-h-sm {
+        @media (max-height: 767px) {
+            @content;
+        }
+    }
+
+    // Extra small displays
+    @else if $point == min-h-xs {
+        @media (min-height: 640px) {
+            @content;
+        }
+    }
+
+    @else if $point == max-h-xs {
+        @media (max-height: 639px) {
+            @content;
+        }
+    }
+
+    @else if $point == min-h-xxs {
+        @media (min-height: 480px) {
+            @content;
+        }
+    }
+
+    @else if $point == max-h-xxs {
+        @media (max-height: 479px) {
+            @content;
+        }
+    }
+
+    @else if $point == min-h-xxxs {
+        @media (min-height: 321px) {
+            @content;
+        }
+    }
+
+    @else if $point == max-h-xxxs {
+        @media (max-height: 320px) {
+            @content;
+        }
+    }
+
+    
+    // MEDIA QUERIES FOR ORIENTATION
+    // Portrait
+    @else if $point == portrait {
+        @media (orientation: portrait) {
+            @content;
+        }
+    }
+
+    // Landscape
+    @else if $point == landscape {
+        @media (orientation: landscape) {
+            @content;
+        }
+    }
+}

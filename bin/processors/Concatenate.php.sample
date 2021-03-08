@@ -1,0 +1,14 @@
+<?php
+
+class Concatenate extends Fci_Objects_AbstractProcessor
+{
+    public function pre(&$productArray, $profile)
+    {
+        // TODO: Implement pre() method.
+    }
+
+    public function post(Fci_Model_AbstractEntity $product, $profile)
+    {
+        // TODO: Implement post() method.
+    }
+}

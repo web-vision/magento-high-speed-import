@@ -1,0 +1,486 @@
+{% extends "Layouts/Page.twig" %}
+
+{% from 'Form/Input.twig' import input %}
+{% from 'Form/Select.twig' import select %}
+{% from 'Form/Multiselect.twig' import multiselect %}
+{% from 'Form/Check.twig' import check %}
+{% from 'Form/Textarea.twig' import textarea %}
+{% from 'Form/Attribute.twig' import attrInput %}
+
+{% block title %}Profile Form{% endblock %}
+
+{% block content %}
+    <header class="fufu-page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1">
+                    <a href="config.php?view[controller]=home" role="button" class="btn btn-sm btn-outline-secondary">Back</a>
+                </div>
+                <div class="col-md-8"></div>
+                <div class="col-md-3 text-right">
+                    {% if configFile %}
+                        <div class="btn-group">
+                            <a href="index.php?config={{ configFile }}.xml" role="button" class="btn btn-sm btn-primary" onclick="return confirm('Do you really want to run the profile?')">Run</a>
+                            <a href="config.php?view[controller]=profile&view[action]=delete&view[configfile]={{ configFile }}" role="button" class="btn btn-sm btn-secondary" onclick="return confirm('Do you really want to delete the profile?')">Delete</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <section class="fufu-section-content">
+                {% if configFile %}
+                    <h2>Edit Import Profile: {{ configFile }}</h2>
+                {% else %}
+                    <h2>Create New Import Profile</h2>
+                {% endif %}
+            </section>
+        </div>
+    </header>
+
+    <div class="febs-page-content">
+        <div class="container">
+            {% if configFile %}
+            <form class="config-form" action="config.php?view[controller]=profile&view[action]=save&view[configfile]={{ configFile }}"  method="post">
+                {% else %}
+                <form class="config-form" action="config.php?view[controller]=profile&view[action]=save"  method="post">
+                    <div class="card fufu-box">
+                        <div class="card-block">
+                            {{ input('view[configfile]', 'Profilename', 'profilename', '', 'text', true) }}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- CSV configuration -->
+                    <div class="card fufu-box">
+                        <div class="card-block">
+                            <h4 class="card-title">CSV configuration</h4>
+                            {{ input('config[file][path]', 'File Name', 'fileName', config.file.path) }}
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ select('config[file][delimiter]', 'Delimiter', 'fileDelimiter', config.file.delimiter ) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ select('config[file][enclosure]', 'Enclosure', 'fileEnclosure', config.file.enclosure ) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    {{ check('config[file][archive_with_datetime]', 'Archive with DateTime', config.file.archive_with_datetime ) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- General -->
+                    <div class="card fufu-box">
+                        <div class="card-block">
+                            <h4 class="card-title">General</h4>
+
+                            <div class="form-row">
+                                <div class="col-md-3">
+                                    {{ check('config[general][reload_cache]', 'Reload Cache', config.general.reload_cache ) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ check('config[general][disable_products]', 'Disable Products', config.general.disable_products ) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ check('config[general][delete_disabled_products]', 'Delete Disabled Products', config.general.delete_disabled_products ) }}
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col">
+                                    {{ check('config[general][delete_products_not_in_csv]', 'Delete Products not in CSV', config.general.delete_products_not_in_csv ) }}
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col">
+                                    {{ check('config[general][unset_special_price]', 'Clear Special Price per Product', config.general.unset_special_price ) }}
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col">
+                                    {{ check('config[general][delete_all_special_prices]', 'Delete All Special Prices', config.general.delete_all_special_prices ) }}
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group">
+                                <h5>Script</h5>
+                                <div class="fufu-mb-default">
+                                    <div class="btn-group">
+                                        <button type="button" id="addEmail" data-class="scriptEmail" class="btn btn-primary btn-sm">Add Email Script</button>
+                                        <button type="button" id="addSimpleXmlToCsv" data-class="scriptSimpleXmlToCsv" class="btn btn-primary btn-sm">Add Simple XML to CSV Script</button>
+                                        <button type="button" id="addFTPDownload" data-class="scriptFTPDownload" class="btn btn-primary btn-sm">Add FTP Download Script</button>
+                                        <button type="button" id="addHeadline" data-class="scriptHeadline" class="btn btn-primary btn-sm">Add Headline Script</button>
+                                    </div>
+                                </div>
+                                <div id="AppendScripts">
+                                    {% if config.general.scripts %}
+                                        {% for scriptType, item in config.general.scripts %}
+                                            {% if scriptType == 'Email' %}
+                                                <div class="form-group AppendScript EmailScript">
+                                                    <div class="card fufu-box-full">
+                                                        <div class="card-block">
+                                                            <div class="row">
+                                                                <div class="col-11">
+                                                                    <h4 class="card-title">Email Configuration</h4>
+                                                                </div>
+                                                                <div class="col-1">
+                                                                    <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="card-content">
+                                                                {{ select('config[general][scripts][Email][event]', 'Event', 'scriptExecuteEmailEvent', item.event ) }}
+
+                                                                {{ input('config[general][scripts][Email][from]', 'From', 'scriptExecuteEmailFrom', item.from) }}
+
+                                                                {{ input('config[general][scripts][Email][to]', 'To', 'scriptExecuteEmailFrom', item.to) }}
+
+                                                                {{ input('config[general][scripts][Email][subject]', 'Subject', 'scriptExecuteEmailSubject', item.subject ) }}
+
+                                                                {{ textarea('config[general][scripts][Email][message]', 'Message', 'scriptExecuteEmailMessage', item.message ) }}
+
+                                                                {{ check('config[general][scripts][Email][html_message]', 'Html Message', item.html_message ) }}
+
+                                                                {{ input('config[general][scripts][Email][attachments]', 'Attachments', 'scriptExecuteEmailAttachments', item.attachments ) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% elseif scriptType == 'SimpleXmlToCsv' %}
+                                                <div class="form-group AppendScript SimpleXmlToCsvScript">
+                                                    <div class="card fufu-box-full">
+                                                        <div class="card-block">
+                                                            <div class="row">
+                                                                <div class="col-11">
+                                                                    <h4 class="card-title">Simple Xml to CSV</h4>
+                                                                </div>
+                                                                <div class="col-1">
+                                                                    <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="card-content">
+                                                                {{ select('config[general][scripts][SimpleXmlToCsv][event]', 'Event', 'scriptExecuteSimpleXmlToCsvEvent', item.event ) }}
+
+                                                                {{ input('config[general][scripts][SimpleXmlToCsv][xml]', 'Xml', 'scriptExecuteSimpleXmlToCsvXml', item.xml) }}
+
+                                                                {{ input('config[general][scripts][SimpleXmlToCsv][xPath]', 'xPath', 'scriptExecuteSimpleXmlToCsvxPath', item.xPath) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% elseif scriptType == 'FTPDownload' %}
+                                                <div class="form-group AppendScript FTPDownloadScript">
+                                                    <div class="card fufu-box-full">
+                                                        <div class="card-block">
+                                                            <div class="row">
+                                                                <div class="col-11">
+                                                                    <h4 class="card-title">FTP Download</h4>
+                                                                </div>
+                                                                <div class="col-1">
+                                                                    <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="card-content">
+                                                                {{ select('config[general][scripts][FTPDownload][event]', 'Event', 'scriptExecuteFTPDownloadEvent', item.event ) }}
+
+                                                                {{ input('config[general][scripts][FTPDownload][host]', 'Host', 'scriptExecuteFTPDownloadHost', item.host) }}
+
+                                                                {{ input('config[general][scripts][FTPDownload][port]', 'Port', 'scriptExecuteFTPDownloadPort', item.port) }}
+
+                                                                {{ input('config[general][scripts][FTPDownload][username]', 'Username', 'scriptExecuteFTPDownloadUsername', item.username) }}
+
+                                                                {{ input('config[general][scripts][FTPDownload][password]', 'Password', 'scriptExecuteFTPDownloadPassword', item.password) }}
+
+                                                                {{ check('config[general][scripts][FTPDownload][passive]', 'Passive', item.passive) }}
+
+                                                                {{ input('config[general][scripts][FTPDownload][remote_file]', 'Remote File', 'scriptExecuteFTPDownloadRemoteFile', item.remote_file) }}
+
+                                                                {{ input('config[general][scripts][FTPDownload][local_file]', 'Local File', 'scriptExecuteFTPDownloadLocalFile', item.local_file) }}
+
+                                                                {{ check('config[general][scripts][FTPDownload][delete]', 'Delete file after download', item.delete) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% elseif scriptType == 'Headline' %}
+                                                <div class="form-group AppendScript HeadlineScript">
+                                                    <div class="card fufu-box-full">
+                                                        <div class="card-block">
+                                                            <div class="row">
+                                                                <div class="col-11">
+                                                                    <h4 class="card-title">Headline Configuration</h4>
+                                                                </div>
+                                                                <div class="col-1">
+                                                                    <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="card-content">
+                                                                {{ select('config[general][scripts][Headline][event]', 'Event', 'scriptExecuteHeadlineEvent', item.event ) }}
+
+                                                                {{ input('config[general][scripts][Headline][input]', 'Input', 'scriptExecuteHeadlineInput', item.input ) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dataprocessing -->
+                    <div class="card fufu-box">
+                        <div class="card-block">
+                            <h4 class="card-title">Dataprocessing</h4>
+
+                            <div class="row">
+                                <div class="col">
+                                    <h5>General</h5>
+                                    {{ select('config[dataprocessing][general][mode]', 'Mode', 'DataprocessingGeneralMode',  config.dataprocessing.general.mode ) }}
+
+                                    {{ select('config[dataprocessing][general][import]', 'Import', 'DataprocessingGeneralMode',  config.dataprocessing.general.import ) }}
+
+                                    {{ input('config[dataprocessing][general][cache_lines]', 'Cache Lines', 'DatapDataprocessingGeneralCacheLinesrocessingGeneralImport', config.dataprocessing.general.cache_lines) }}
+
+                                    {{ select('config[dataprocessing][general][mappings]', 'Mappings', 'DataprocessingGeneralMappings', config.dataprocessing.general.mappings ) }}
+
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            {{ check('config[dataprocessing][general][strip_html_tags]', 'Strip html tags', config.dataprocessing.general.strip_html_tags ) }}
+                                        </div>
+                                        <div class="col-md-3">
+                                            {{ check('config[dataprocessing][general][import_globally]', 'Import Globally', config.dataprocessing.general.import_globally ) }}
+                                        </div>
+                                    </div>
+
+                                    {{ input('config[dataprocessing][general][date_time_format]', 'DateTime format', 'DataprocessingGeneralDateTimeFormat', config.dataprocessing.general.date_time_format) }}
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <h5>Image</h5>
+
+                            {{ input('config[dataprocessing][images][image_prefix]', 'Prefix', 'DataprocessingImagePrefix', config.dataprocessing.images.image_prefix) }}
+
+                            {{ input('config[dataprocessing][images][image_split]', 'Split', 'DataprocessingImageSplit', config.dataprocessing.images.image_split) }}
+
+                            <div class="form-row">
+                                <div class="col-md-3">
+                                    {{ check('config[dataprocessing][images][sku_fallback]', 'SKU Fallback', config.dataprocessing.images.sku_fallback ) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ check('config[dataprocessing][images][import_gallery]', 'Import Gallery', config.dataprocessing.images.import_gallery ) }}
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <h5>Products</h5>
+
+
+                            {{ input('config[dataprocessing][products][identifier]', 'Identifier', 'DataprocessingProductsIdentifier', config.dataprocessing.products.identifier) }}
+
+                            {{ check('config[dataprocessing][products][clear_existing_websites]', 'Clear existing websites', config.dataprocessing.products.clear_existing_websites ) }}
+
+                        </div>
+                    </div>
+
+                    <!-- General defaults -->
+                    <div class="card fufu-box">
+                        <div class="card-block">
+                            <h4 class="card-title">General defaults</h4>
+                            <div class="row" >
+                                <div class="col-md-6">
+                                    {{ multiselect('config[general_defaults][websites][]', 'Website', 'GeneralDefaultWebsite', config.general_defaults.websites) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ multiselect('config[general_defaults][store][]', 'Store', 'GeneralDefaultStore', config.general_defaults.store) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product defaults -->
+                    <div class="card fufu-box">
+                        <div class="card-block">
+                            <h4 class="card-title">Product defaults</h4>
+                            {% for attribute_code, value in config.product_defaults %}
+                                {% if attribute(productAttributes, attribute_code) is defined %}
+                                    {% set attribute = attribute(productAttributes, attribute_code) %}
+
+                                    {{ attrInput(attribute, attribute_code, 'product_defaults', attribute(config.product_defaults, attribute_code)) }}
+                                {% else %}
+                                    {{ input('config[product_defaults][' ~ attribute_code ~ ']', attribute_code|replace({'_':' '})|title, 'ProductDefault' ~ attribute_code, attribute(config.product_defaults, attribute_code)) }}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Category defaults -->
+                    <div class="card fufu-box">
+                        <div class="card-block">
+                            <h4 class="card-title">Category defaults</h4>
+
+                            {% for attribute_code, value in config.category_defaults %}
+                                {% if attribute(categoryAttributes, attribute_code) is defined %}
+                                    {% set attribute = attribute(categoryAttributes, attribute_code) %}
+
+                                    {{ attrInput(attribute, attribute_code, 'category_defaults', attribute(config.category_defaults, attribute_code)) }}
+                                {% else %}
+                                    {{ input('config[category_defaults][' ~ attribute_code ~ ']', attribute_code|replace({'_':' '})|title, 'CategoryDefault' ~ attribute_code, attribute(config.category_defaults, attribute_code)) }}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Category settings -->
+                    <div class="card fufu-box">
+                        <div class="card-block">
+                            <h4 class="card-title">Category settings</h4>
+
+                            {{ input('config[category_settings][root_category]', 'Root Category', 'CategorySettingsRootCategory', config.category_settings.root_category) }}
+
+                            {{ input('config[category_settings][category_separate]', 'Category Separator', 'CategorySettingsCategorySeparate', config.category_settings.category_separate) }}
+
+                            {{ input('config[category_settings][sub_category_separate]', 'Sub Category Separator', 'CategorySettingsSubCategorySeparate', config.category_settings.sub_category_separate) }}
+
+                            <div class="form-row">
+                                <div class="col">
+                                    {{ check('config[category_settings][create_categories]', 'Create Categories', config.category_settings.create_categories ) }}
+                                </div>
+                            </div>
+                            {{ input('config[category_settings][default_product_position]', 'Default Product Position', 'CategoryDefaultDefaultProductPosition', config.category_settings.default_product_position) }}
+                        </div>
+                    </div>
+
+                    <div class="fufu-section-content">
+                        <input type="submit" value="submit" name="view[submit]" role="button" class="btn btn-primary btn-block" />
+                    </div>
+
+                </form>
+                <div id="scriptFieldGroup">
+                    <div id="scriptEmail" style="display: none">
+                        <div class="card fufu-box-full">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <h4 class="card-title">Email Configuration</h4>
+                                    </div>
+                                    <div class="col-1">
+                                        <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                </div>
+
+                                <div class="card-content">
+                                    {{ select('config[general][scripts][Email][event]', 'Event', 'scriptExecuteEmailEvent', scriptEvents ) }}
+
+                                    {{ input('config[general][scripts][Email][from]', 'From', 'scriptExecuteEmailFrom') }}
+
+                                    {{ input('config[general][scripts][Email][to]', 'To', 'scriptExecuteEmailTo') }}
+
+                                    {{ input('config[general][scripts][Email][subject]', 'Subject', 'scriptExecuteEmailSubject') }}
+
+                                    {{ textarea('config[general][scripts][Email][message]', 'Message', 'scriptExecuteEmailMessage') }}
+
+                                    {{ check('config[general][scripts][Email][html_message]', 'Html Message' ) }}
+
+                                    {{ input('config[general][scripts][Email][attachments]', 'Attachments', 'scriptExecuteEmailAttachments') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scriptSimpleXmlToCsv" style="display: none">
+                        <div class="card fufu-box-full">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <h4 class="card-title">Simple Xml to CSV</h4>
+                                    </div>
+                                    <div class="col-1">
+                                        <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                </div>
+
+                                <div class="card-content">
+                                    {{ select('config[general][scripts][SimpleXmlToCsv][event]', 'Event', 'scriptExecuteSimpleXmlToCsvEvent', scriptEvents ) }}
+
+                                    {{ input('config[general][scripts][SimpleXmlToCsv][xml]', 'Xml', 'scriptExecuteSimpleXmlToCsvXml') }}
+
+                                    {{ input('config[general][scripts][SimpleXmlToCsv][xPath]', 'xPath', 'scriptExecuteSimpleXmlToCsvxPath') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scriptFTPDownload" style="display: none">
+                        <div class="card fufu-box-full">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <h4 class="card-title">FTP Download</h4>
+                                    </div>
+                                    <div class="col-1">
+                                        <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                </div>
+
+                                <div class="card-content">
+                                    {{ select('config[general][scripts][FTPDownload][event]', 'Event', 'scriptExecuteFTPDownloadEvent', scriptEvents ) }}
+
+                                    {{ input('config[general][scripts][FTPDownload][host]', 'Host', 'scriptExecuteFTPDownloadHost') }}
+
+                                    {{ input('config[general][scripts][FTPDownload][port]', 'Port', 'scriptExecuteFTPDownloadPort', '21') }}
+
+                                    {{ input('config[general][scripts][FTPDownload][username]', 'Username', 'scriptExecuteFTPDownloadUsername') }}
+
+                                    {{ input('config[general][scripts][FTPDownload][password]', 'Password', 'scriptExecuteFTPDownloadPassword') }}
+
+                                    {{ check('config[general][scripts][FTPDownload][passive]', 'Passive', true) }}
+
+                                    {{ input('config[general][scripts][FTPDownload][remote_file]', 'Remote File', 'scriptExecuteFTPDownloadRemoteFile') }}
+
+                                    {{ input('config[general][scripts][FTPDownload][local_file]', 'Local File', 'scriptExecuteFTPDownloadLocalFile') }}
+
+                                    {{ check('config[general][scripts][FTPDownload][delete]', 'Delete file after download', false) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="scriptHeadline" style="display: none">
+                        <div class="card fufu-box-full">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <h4 class="card-title">Headline Configuration</h4>
+                                    </div>
+                                    <div class="col-1">
+                                        <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                </div>
+
+                                <div class="card-content">
+                                    {{ select('config[general][scripts][Headline][event]', 'Event', 'scriptExecuteHeadlineEvent', scriptEvents) }}
+
+                                    {{ input('config[general][scripts][Headline][input]', 'Input', 'scriptExecuteHeadlineInput') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

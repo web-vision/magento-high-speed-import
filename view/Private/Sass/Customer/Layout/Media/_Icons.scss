@@ -1,0 +1,52 @@
+@mixin fufu-btn-icon {
+    background-repeat: no-repeat;
+    background-size: 1em;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    transition: color .3s;
+}
+
+@mixin fufu-btn-icon-without-text {
+    @include fufu-btn-icon;
+    height: 1em;
+    text-indent: -99999px;
+    width: 1em;
+}
+
+@mixin fufu-btn-icon-with-text {
+    @include fufu-btn-icon;
+    background-position: left center;
+    padding-left: $space * 6;
+
+    &:hover,
+    &:focus {
+        color: $gray-400;
+    }
+}
+
+button {
+    &.close,
+    &.remove {
+        @include fufu-btn-icon-without-text;
+    }
+
+    &.close,
+    &.remove {
+        @include fufu-btn-icon-with-text;
+        background: url('../Images/RecycleBin.svg') no-repeat center;
+
+        &:hover {
+            background: url('../Images/RecycleBinRed.svg') no-repeat center;
+        }
+    }
+
+    &.add {
+        @include fufu-btn-icon-with-text;
+        background-image: url('../Images/Add.svg');
+
+        &:hover {
+            background-image: url('../Images/AddGreen.svg');
+        }
+    }
+}
